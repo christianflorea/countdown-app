@@ -37,6 +37,8 @@ body {
   gap: 1.5rem;
   justify-content: center;
 }
+/* Centre a lone tile on the last row */
+.grid > .tile:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
 @media (max-width: 900px) {
   .grid { grid-template-columns: minmax(0, auto); }
 }
