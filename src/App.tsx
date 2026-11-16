@@ -27,7 +27,7 @@ export default function App() {
           ))}
         </div>
       )}
-      <p className="message">Counting down the days till you're back, miss you my love</p>
+      <p className="message">Counting down the days till you're back, going to miss you my love</p>
     </main>
   )
 }
