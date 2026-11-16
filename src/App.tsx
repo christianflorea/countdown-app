@@ -17,6 +17,7 @@ export default function App() {
 
   return (
     <main className="page">
+      <h1 className="title">Ella's Very Important Countdowns</h1>
       {visible.length === 0 ? (
         <p className="empty">No upcoming countdowns.</p>
       ) : (
@@ -26,6 +27,7 @@ export default function App() {
           ))}
         </div>
       )}
+      <p className="message">Counting down the days till you're back, miss you my love</p>
     </main>
   )
 }

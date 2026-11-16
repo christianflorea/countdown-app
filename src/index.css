@@ -26,9 +26,42 @@ body {
 .page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 1.1;
+  text-align: center;
+  color: var(--cream);
+}
+.title::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 0.9rem auto 0;
+  border-radius: 2px;
+  background: var(--pink);
+}
+
+.message {
+  margin: 0;
+  max-width: 34rem;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  line-height: 1.5;
+  text-align: center;
+  color: var(--sage);
 }
 
 .grid {
