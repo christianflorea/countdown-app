@@ -206,7 +206,7 @@ body {
 /* Phones: keep each tile's label on a single line */
 @media (max-width: 600px) {
   .page { padding-left: 0.75rem; padding-right: 0.75rem; }
-  .grid { width: 100%; }
+  .grid { width: 100%; max-width: 24rem; }
   .tile { padding: 1.25rem 1rem 1.5rem; }
   .units { justify-content: space-between; }
   .tile-label { white-space: nowrap; font-size: min(1.1rem, calc((100vw - 60px) / 19.8)); }
