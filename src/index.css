@@ -76,7 +76,6 @@ body {
   .grid { grid-template-columns: minmax(0, 1fr); }
 }
 .tile {
-  background: var(--cream);
   color: var(--green);
   border-radius: 20px;
   padding: 1.5rem 1.75rem 1.75rem;
@@ -84,15 +83,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  position: relative;
-  overflow: hidden;
-}
-.tile::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 6px;
-  background: var(--pink);
+  /* Pink accent bar drawn as part of the background (no overflow clipping: Safari
+     mis-renders 3D-transformed children inside rounded, clipped containers). */
+  background: linear-gradient(to bottom, var(--pink) 0 6px, var(--cream) 6px);
 }
 
 .tile-label {
@@ -137,7 +130,7 @@ body {
   position: relative;
   width: var(--digit-w);
   height: var(--digit-h);
-  perspective: 400px;
+  isolation: isolate;
   font-size: calc(var(--digit-w) * 1.05);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -151,7 +144,6 @@ body {
   height: 50%;
   overflow: hidden;
   background: var(--green);
-  backface-visibility: hidden;
 }
 .half span {
   position: absolute;
@@ -190,13 +182,15 @@ body {
   animation: flip-bottom 0.3s ease-out 0.3s both;
 }
 
+/* Perspective lives in each transform (not a shared parent 3D context) so iOS Safari
+   keeps normal z-index stacking between the flaps and the static halves. */
 @keyframes flip-top {
-  from { transform: rotateX(0deg); }
-  to   { transform: rotateX(-90deg); }
+  from { transform: perspective(400px) rotateX(0deg); }
+  to   { transform: perspective(400px) rotateX(-90deg); }
 }
 @keyframes flip-bottom {
-  from { transform: rotateX(90deg); }
-  to   { transform: rotateX(0deg); }
+  from { transform: perspective(400px) rotateX(90deg); }
+  to   { transform: perspective(400px) rotateX(0deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
