@@ -73,9 +73,8 @@ body {
 /* Centre a lone tile on the last row */
 .grid > .tile:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
 }
-
 .tile {
   background: var(--cream);
   color: var(--green);
@@ -202,4 +201,13 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .flap-top, .flap-bottom { animation-duration: 0s; animation-delay: 0s; }
+}
+
+/* Phones: keep each tile's label on a single line */
+@media (max-width: 600px) {
+  .page { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .grid { width: 100%; }
+  .tile { padding: 1.25rem 1rem 1.5rem; }
+  .units { justify-content: space-between; }
+  .tile-label { white-space: nowrap; font-size: min(1.1rem, calc((100vw - 60px) / 19.8)); }
 }
