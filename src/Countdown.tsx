@@ -1,6 +1,5 @@
 import { FlipDigit } from './FlipDigit'
 
-const DAY = 86_400_000
 
 function Unit({ value, label, minDigits = 2 }: { value: number; label: string; minDigits?: number }) {
   const digits = String(value).padStart(minDigits, '0').split('')
@@ -43,6 +42,3 @@ export function Countdown({ label, target, now }: { label: string; target: numbe
     </section>
   )
 }
-
-/** A countdown stays visible through its day (24h after the target), then disappears. */
-export const isVisible = (target: number, now: number) => now < target + DAY

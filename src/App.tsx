@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Countdown, isVisible } from './Countdown'
+import { Countdown } from './Countdown'
 import { EVENTS } from './events'
 
-const events = EVENTS.map((e) => ({ ...e, time: Date.parse(e.target) })).sort((a, b) => a.time - b.time)
+const DAY = 86_400_000
+
+// Each countdown shows "Today!" once its time arrives, then disappears at the end of
+// that day (midnight PT, i.e. PST = UTC-8 in December).
+const events = EVENTS.map((e) => ({
+  ...e,
+  time: Date.parse(e.target),
+  hideAt: Date.parse(`${e.target.slice(0, 10)}T00:00:00-08:00`) + DAY,
+})).sort((a, b) => a.time - b.time)
 
 export default function App() {
   const [now, setNow] = useState(() => Date.now())
@@ -13,7 +21,7 @@ export default function App() {
     return () => clearInterval(id)
   }, [])
 
-  const visible = events.filter((e) => isVisible(e.time, now))
+  const visible = events.filter((e) => now < e.hideAt)
 
   return (
     <main className="page">
