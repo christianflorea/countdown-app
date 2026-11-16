@@ -72,7 +72,7 @@ body {
 }
 /* Centre a lone tile on the last row */
 .grid > .tile:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .grid { grid-template-columns: minmax(0, 1fr); }
 }
 .tile {
