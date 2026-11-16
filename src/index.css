@@ -50,7 +50,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  border-top: 6px solid var(--pink);
+  position: relative;
+  overflow: hidden;
+}
+.tile::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: var(--pink);
 }
 
 .tile-label {
